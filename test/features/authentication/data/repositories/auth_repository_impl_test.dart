@@ -12,18 +12,18 @@ import 'package:mockito/mockito.dart';
 import 'auth_repository_impl_test.mocks.dart';
 
 @GenerateMocks([AuthRemoteDataSource, AuthLocalDataSource])
-void main(){
-
+void main() {
   late AuthRepositoryImpl authRepository;
   late MockAuthRemoteDataSource authRemoteDataSource;
   late MockAuthLocalDataSource authLocalDataSource;
 
-  setUp((){
+  setUp(() {
     authRemoteDataSource = MockAuthRemoteDataSource();
     authLocalDataSource = MockAuthLocalDataSource();
-    authRepository = AuthRepositoryImpl(remoteDataSource:  authRemoteDataSource, localDataSource:  authLocalDataSource);
+    authRepository = AuthRepositoryImpl(
+        remoteDataSource: authRemoteDataSource,
+        localDataSource: authLocalDataSource);
   });
-
 
   group('authRepository', () {
     final tEmail = 'test@email.com';
@@ -32,7 +32,6 @@ void main(){
     final tAppUser = AppUserModel(email: tEmail, uid: tUid);
 
     group('getUser', () {
-
       test('Should return AppUserModel when a user is present', () async {
         //arrange
         when(authLocalDataSource.getUser()).thenAnswer((_) async => tAppUser);
@@ -44,8 +43,8 @@ void main(){
         expect(result, Right(tAppUser));
       });
 
-
-      test('Should return user not found failure when a user is not present', () async {
+      test('Should return user not found failure when a user is not present',
+          () async {
         //arrange
         when(authLocalDataSource.getUser()).thenThrow(UserNotFoundException());
         //act
@@ -57,76 +56,79 @@ void main(){
       });
     });
 
-    void isAuthenticatedTest(bool isLoggedIn){
+    void isAuthenticatedTest(bool isLoggedIn) {
       test('Should return true when a user is present', () async {
         //arrange
-        when(authRemoteDataSource.isAuthenticated()).thenAnswer((_) async => isLoggedIn);
+        if (isLoggedIn) {
+          when(authLocalDataSource.getUser()).thenAnswer((_) async => tAppUser);
+        } else {
+          when(authLocalDataSource.getUser())
+              .thenThrow(UserNotFoundException());
+        }
         //act
         final result = await authRepository.isAuthenticated();
         //assert
-        verify(authRemoteDataSource.isAuthenticated());
-        verifyNoMoreInteractions(authLocalDataSource);
+        verify(authLocalDataSource.getUser());
         expect(result, Right(isLoggedIn));
       });
     }
-    group('isAuthenticated', () {
 
+    group('isAuthenticated', () {
       // is authenticated test when user is logged in
       isAuthenticatedTest(true);
-
 
       // is authenticated test when user is not logged in
       isAuthenticatedTest(false);
 
-
       test('Should return auth failure when something goes wrong', () async {
         //arrange
-        when(authRemoteDataSource.isAuthenticated()).thenThrow(AuthException());
+        when(authLocalDataSource.getUser()).thenThrow(AuthException());
         //act
         final result = await authRepository.isAuthenticated();
         //assert
-        verify(authRemoteDataSource.isAuthenticated());
-        verifyNoMoreInteractions(authLocalDataSource);
+        verify(authLocalDataSource.getUser());
         expect(result, Left(AuthFailure(somethingWrong)));
       });
     });
 
-
     group('logIn', () {
       test('Should return an App User when login is successful', () async {
         //arrange
-        when(authRemoteDataSource.logIn(email: tEmail, password: tPassword)).thenAnswer((_) async => tAppUser);
+        when(authRemoteDataSource.logIn(email: tEmail, password: tPassword))
+            .thenAnswer((_) async => tAppUser);
         //act
-        final result = await authRepository.logIn(email: tEmail, password: tPassword);
+        final result =
+            await authRepository.logIn(email: tEmail, password: tPassword);
         //assert
         verify(authRemoteDataSource.logIn(email: tEmail, password: tPassword));
         expect(result, Right(tAppUser));
       });
 
-
-      test('Should return Auth Failure when user enters invalid credentials', () async {
+      test('Should return Auth Failure when user enters invalid credentials',
+          () async {
         //arrange
-        when(authRemoteDataSource.logIn(email: tEmail, password: tPassword)).thenThrow(InValidCredentialsException());
+        when(authRemoteDataSource.logIn(email: tEmail, password: tPassword))
+            .thenThrow(InValidCredentialsException());
         //act
-        final result = await authRepository.logIn(email: tEmail, password: tPassword);
+        final result =
+            await authRepository.logIn(email: tEmail, password: tPassword);
         //assert
         verify(authRemoteDataSource.logIn(email: tEmail, password: tPassword));
         expect(result, Left(AuthFailure(invalidCredentials)));
       });
 
-
       test('Should return Auth Failure when something goes wrong', () async {
         //arrange
-        when(authRemoteDataSource.logIn(email: tEmail, password: tPassword)).thenThrow(Exception());
+        when(authRemoteDataSource.logIn(email: tEmail, password: tPassword))
+            .thenThrow(Exception());
         //act
-        final result = await authRepository.logIn(email: tEmail, password: tPassword);
+        final result =
+            await authRepository.logIn(email: tEmail, password: tPassword);
         //assert
         verify(authRemoteDataSource.logIn(email: tEmail, password: tPassword));
         expect(result, Left(AuthFailure(somethingWrong)));
       });
     });
-
-
 
     group('logOut', () {
       test('Should logout the user', () async {
@@ -150,6 +152,5 @@ void main(){
         expect(result, Left(AuthFailure(somethingWrong)));
       });
     });
-
   });
 }

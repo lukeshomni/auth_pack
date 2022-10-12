@@ -13,11 +13,15 @@ dependencies:
   # Service locator
   get_it:
   # Bloc for state management
-  flutter_bloc:
+  flutter_bloc: ^8.1.1
+  bloc_test: ^9.1.0
   # Value equality
   equatable: ^2.0.5
   # Functional programming thingies
   dartz: ^0.10.1
+
+  firebase_core: ^1.24.0
+  firebase_auth: ^3.11.2
 
 dev_dependencies:
   flutter_test:

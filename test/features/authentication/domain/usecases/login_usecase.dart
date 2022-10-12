@@ -15,12 +15,12 @@ import 'login_usecase.mocks.dart';
 @GenerateMocks([AuthRepository])
 void main(){
   
-  late LoginUseCase loginUseCase;
+  late Login loginUseCase;
   late MockAuthRepository authRepository;
   
   setUp((){
     authRepository = MockAuthRepository();
-    loginUseCase = LoginUseCase(authRepository);
+    loginUseCase = Login(authRepository);
   });
 
 

@@ -44,14 +44,6 @@ class MockAuthRemoteDataSource extends _i1.Mock
   }
 
   @override
-  _i4.Future<bool> isAuthenticated() => (super.noSuchMethod(
-        Invocation.method(
-          #isAuthenticated,
-          [],
-        ),
-        returnValue: _i4.Future<bool>.value(false),
-      ) as _i4.Future<bool>);
-  @override
   _i4.Future<_i2.AppUserModel> logIn({
     required String? email,
     required String? password,
