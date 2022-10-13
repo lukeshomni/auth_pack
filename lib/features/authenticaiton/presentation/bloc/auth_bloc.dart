@@ -25,6 +25,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<GetAuthStateEvent>(_getAuthStatus);
     on<ShowPasswordEvent>(_showPassword);
     on<LogInButtonClickEvent>(_login);
+    on<CallOnUserAuthenticatedCallback>(_callOnUserAuthenticatedCallBack);
+    on<LogOutEvent>(_logOut);
   }
 
   _getAuthStatus(GetAuthStateEvent event, Emitter<AuthState> emit) async {
@@ -48,7 +50,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     emit(Loading());
 
     final result =
-        await login(LoginParams(email: 'test@email.com', password: 'password'));
+        await login(LoginParams(email: event.email, password: event.password));
 
     result.fold(
       (l) {
@@ -58,5 +60,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         emit(Authenticated());
       },
     );
+  }
+
+  _callOnUserAuthenticatedCallBack(CallOnUserAuthenticatedCallback event, Emitter<AuthState> emit){
+    event.onUserAuthenticated();
+  }
+
+  _logOut(LogOutEvent event, Emitter<AuthState> emit) async {
+    await logOut(NoParams());
+    event.onLoggedOutCallBack();
   }
 }

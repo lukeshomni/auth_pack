@@ -9,7 +9,7 @@ class LogOut extends UseCase {
 
   LogOut(this.authRepository);
   @override
-  Future<Either<Failure, void>> call(params) {
+  Future<Either<Failure, void>> call(params) async {
     return authRepository.logOut();
   }
 }
