@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:authentication/core/errors/exceptions.dart';
 import 'package:authentication/core/errors/failures.dart';
 import 'package:authentication/features/authenticaiton/data/data_sources/auth_local_datasource.dart';
@@ -28,9 +30,10 @@ class AuthRepositoryImpl extends AuthRepository {
   @override
   Future<Either<Failure, bool>> isAuthenticated() async {
     try {
-      final result = await remoteDataSource.isAuthenticated();
-      return Right(result);
-    } on AuthException {
+      final user = localDataSource.getUser();
+      return Right(true);
+    } catch(e) {
+      if(e is UserNotFoundException) return Right(false);
       return Left(AuthFailure(somethingWrong));
     }
   }

@@ -1,3 +1,6 @@
+import 'package:authentication/core/errors/exceptions.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
 import '../models/app_user_model.dart';
 
 abstract class AuthLocalDataSource{
@@ -8,13 +11,14 @@ abstract class AuthLocalDataSource{
 class AuthLocalDataSourceImpl extends AuthLocalDataSource{
   @override
   Future<AppUserModel> getUser() {
-    // TODO: implement getUser
-    throw UnimplementedError();
+      final user = FirebaseAuth.instance.currentUser;
+      if(user == null) throw UserNotFoundException();
+      AppUserModel appUser = AppUserModel(email: user.email.toString(), uid: user.uid);
+      return Future(() => appUser);
   }
 
   @override
   Future<void> logOut() {
-    // TODO: implement logOut
-    throw UnimplementedError();
+    return FirebaseAuth.instance.signOut();
   }
 }
