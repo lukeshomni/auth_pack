@@ -8,6 +8,8 @@ import 'package:authentication/features/authentication/data/models/app_user_mode
 import 'package:authentication/features/authentication/domain/repositories/auth_repository.dart';
 import 'package:dartz/dartz.dart';
 
+import '../data_sources/login/login.dart';
+
 class AuthRepositoryImpl extends AuthRepository {
   final AuthRemoteDataSource remoteDataSource;
   final AuthLocalDataSource localDataSource;
@@ -40,9 +42,9 @@ class AuthRepositoryImpl extends AuthRepository {
 
   @override
   Future<Either<Failure, AppUserModel>> logIn(
-      {required String email, required String password}) async {
+      {required LoginMethod loginMethod, required String email, required String password}) async {
     try{
-      final user = await remoteDataSource.logIn(email: email, password: password);
+      final user = await remoteDataSource.logIn(loginMethod: loginMethod, email: email, password: password);
       return Right(user);
     } catch(e){
       if(e is InValidCredentialsException){

@@ -3,7 +3,6 @@ import 'package:authentication/features/authentication/domain/entities/app_user.
 import 'package:authentication/features/authentication/domain/repositories/auth_repository.dart';
 
 import 'package:dartz/dartz.dart';
-import 'package:equatable/equatable.dart';
 
 import '../../../../core/usecases/usecase.dart';
 
@@ -12,6 +11,6 @@ class LoginUseCase extends UseCase {
   LoginUseCase(this.authRepository);
   @override
   Future<Either<Failure, AppUser>> call(params) {
-    return authRepository.logIn(email: params.email, password: params.password);
+    return authRepository.logIn(loginMethod: params.loginMethod, email: params.email, password: params.password);
   }
 }

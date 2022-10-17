@@ -53,11 +53,11 @@ class _FakeEither_1<L, R> extends _i1.SmartFake implements _i3.Either<L, R> {
         );
 }
 
-/// A class which mocks [GetUser].
+/// A class which mocks [GetUserUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockGetUser extends _i1.Mock implements _i4.GetUserUseCase {
-  MockGetUser() {
+class MockGetUserUseCase extends _i1.Mock implements _i4.GetUserUseCase {
+  MockGetUserUseCase() {
     _i1.throwOnMissingStub(this);
   }
 
@@ -87,11 +87,12 @@ class MockGetUser extends _i1.Mock implements _i4.GetUserUseCase {
       ) as _i5.Future<_i3.Either<_i6.Failure, dynamic>>);
 }
 
-/// A class which mocks [IsAuthenticated].
+/// A class which mocks [IsAuthenticatedUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockIsAuthenticated extends _i1.Mock implements _i7.IsAuthenticatedUseCase {
-  MockIsAuthenticated() {
+class MockIsAuthenticatedUseCase extends _i1.Mock
+    implements _i7.IsAuthenticatedUseCase {
+  MockIsAuthenticatedUseCase() {
     _i1.throwOnMissingStub(this);
   }
 
@@ -121,11 +122,11 @@ class MockIsAuthenticated extends _i1.Mock implements _i7.IsAuthenticatedUseCase
       ) as _i5.Future<_i3.Either<_i6.Failure, bool>>);
 }
 
-/// A class which mocks [Login].
+/// A class which mocks [LoginUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockLogin extends _i1.Mock implements _i8.LoginUseCase {
-  MockLogin() {
+class MockLoginUseCase extends _i1.Mock implements _i8.LoginUseCase {
+  MockLoginUseCase() {
     _i1.throwOnMissingStub(this);
   }
 
@@ -155,11 +156,11 @@ class MockLogin extends _i1.Mock implements _i8.LoginUseCase {
       ) as _i5.Future<_i3.Either<_i6.Failure, _i9.AppUser>>);
 }
 
-/// A class which mocks [LogOut].
+/// A class which mocks [LogOutUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockLogOut extends _i1.Mock implements _i10.LogOutUseCase {
-  MockLogOut() {
+class MockLogOutUseCase extends _i1.Mock implements _i10.LogOutUseCase {
+  MockLogOutUseCase() {
     _i1.throwOnMissingStub(this);
   }
 

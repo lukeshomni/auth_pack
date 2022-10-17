@@ -1,4 +1,5 @@
 import 'package:authentication/core/usecases/usecase.dart';
+import 'package:authentication/features/authentication/data/data_sources/login/login.dart';
 import 'package:authentication/features/authentication/domain/use_cases/get_user_usecase.dart';
 import 'package:authentication/features/authentication/domain/use_cases/is_authenticated_usecase.dart';
 import 'package:authentication/features/authentication/domain/use_cases/login_usecase.dart';
@@ -48,7 +49,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     emit(Loading());
 
     final result =
-        await loginUseCase(LoginParams(email: event.email, password: event.password));
+        await loginUseCase(LoginParams(loginMethod: LoginMethod.emailAndPassword, email: event.email, password: event.password));
 
     result.fold(
       (l) {

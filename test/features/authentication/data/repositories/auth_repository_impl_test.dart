@@ -2,6 +2,7 @@ import 'package:authentication/core/errors/exceptions.dart';
 import 'package:authentication/core/errors/failures.dart';
 import 'package:authentication/features/authentication/data/data_sources/auth_local_datasource.dart';
 import 'package:authentication/features/authentication/data/data_sources/auth_remote_datasource.dart';
+import 'package:authentication/features/authentication/data/data_sources/login/login.dart';
 import 'package:authentication/features/authentication/data/models/app_user_model.dart';
 import 'package:authentication/features/authentication/data/repositories/auth_repository_impl.dart';
 import 'package:dartz/dartz.dart';
@@ -94,38 +95,38 @@ void main() {
     group('logIn', () {
       test('Should return an App User when login is successful', () async {
         //arrange
-        when(authRemoteDataSource.logIn(email: tEmail, password: tPassword))
+        when(authRemoteDataSource.logIn(email: tEmail, password: tPassword, loginMethod: LoginMethod.emailAndPassword))
             .thenAnswer((_) async => tAppUser);
         //act
         final result =
-            await authRepository.logIn(email: tEmail, password: tPassword);
+            await authRepository.logIn(email: tEmail, password: tPassword, loginMethod: LoginMethod.emailAndPassword);
         //assert
-        verify(authRemoteDataSource.logIn(email: tEmail, password: tPassword));
+        verify(authRemoteDataSource.logIn(email: tEmail, password: tPassword, loginMethod: LoginMethod.emailAndPassword));
         expect(result, Right(tAppUser));
       });
 
       test('Should return Auth Failure when user enters invalid credentials',
           () async {
         //arrange
-        when(authRemoteDataSource.logIn(email: tEmail, password: tPassword))
+        when(authRemoteDataSource.logIn(email: tEmail, password: tPassword, loginMethod: LoginMethod.emailAndPassword))
             .thenThrow(InValidCredentialsException());
         //act
         final result =
-            await authRepository.logIn(email: tEmail, password: tPassword);
+            await authRepository.logIn(email: tEmail, password: tPassword, loginMethod: LoginMethod.emailAndPassword);
         //assert
-        verify(authRemoteDataSource.logIn(email: tEmail, password: tPassword));
+        verify(authRemoteDataSource.logIn(email: tEmail, password: tPassword, loginMethod: LoginMethod.emailAndPassword));
         expect(result, Left(AuthFailure(invalidCredentials)));
       });
 
       test('Should return Auth Failure when something goes wrong', () async {
         //arrange
-        when(authRemoteDataSource.logIn(email: tEmail, password: tPassword))
+        when(authRemoteDataSource.logIn(email: tEmail, password: tPassword, loginMethod: LoginMethod.emailAndPassword))
             .thenThrow(Exception());
         //act
         final result =
-            await authRepository.logIn(email: tEmail, password: tPassword);
+            await authRepository.logIn(email: tEmail, password: tPassword, loginMethod: LoginMethod.emailAndPassword);
         //assert
-        verify(authRemoteDataSource.logIn(email: tEmail, password: tPassword));
+        verify(authRemoteDataSource.logIn(email: tEmail, password: tPassword, loginMethod: LoginMethod.emailAndPassword));
         expect(result, Left(AuthFailure(somethingWrong)));
       });
     });

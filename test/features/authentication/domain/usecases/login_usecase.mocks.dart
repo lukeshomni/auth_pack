@@ -6,6 +6,8 @@
 import 'dart:async' as _i4;
 
 import 'package:authentication/core/errors/failures.dart' as _i5;
+import 'package:authentication/features/authentication/data/data_sources/login/login.dart'
+    as _i7;
 import 'package:authentication/features/authentication/domain/entities/app_user.dart'
     as _i6;
 import 'package:authentication/features/authentication/domain/repositories/auth_repository.dart'
@@ -76,6 +78,7 @@ class MockAuthRepository extends _i1.Mock implements _i3.AuthRepository {
       ) as _i4.Future<_i2.Either<_i5.Failure, _i6.AppUser>>);
   @override
   _i4.Future<_i2.Either<_i5.Failure, _i6.AppUser>> logIn({
+    required _i7.LoginMethod? loginMethod,
     required String? email,
     required String? password,
   }) =>
@@ -84,6 +87,7 @@ class MockAuthRepository extends _i1.Mock implements _i3.AuthRepository {
           #logIn,
           [],
           {
+            #loginMethod: loginMethod,
             #email: email,
             #password: password,
           },
@@ -95,6 +99,7 @@ class MockAuthRepository extends _i1.Mock implements _i3.AuthRepository {
             #logIn,
             [],
             {
+              #loginMethod: loginMethod,
               #email: email,
               #password: password,
             },

@@ -6,9 +6,11 @@
 import 'dart:async' as _i4;
 
 import 'package:authentication/features/authentication/data/data_sources/auth_local_datasource.dart'
-    as _i5;
+    as _i6;
 import 'package:authentication/features/authentication/data/data_sources/auth_remote_datasource.dart'
     as _i3;
+import 'package:authentication/features/authentication/data/data_sources/login/login.dart'
+    as _i5;
 import 'package:authentication/features/authentication/data/models/app_user_model.dart'
     as _i2;
 import 'package:mockito/mockito.dart' as _i1;
@@ -45,6 +47,7 @@ class MockAuthRemoteDataSource extends _i1.Mock
 
   @override
   _i4.Future<_i2.AppUserModel> logIn({
+    required _i5.LoginMethod? loginMethod,
     required String? email,
     required String? password,
   }) =>
@@ -53,6 +56,7 @@ class MockAuthRemoteDataSource extends _i1.Mock
           #logIn,
           [],
           {
+            #loginMethod: loginMethod,
             #email: email,
             #password: password,
           },
@@ -63,6 +67,7 @@ class MockAuthRemoteDataSource extends _i1.Mock
             #logIn,
             [],
             {
+              #loginMethod: loginMethod,
               #email: email,
               #password: password,
             },
@@ -75,7 +80,7 @@ class MockAuthRemoteDataSource extends _i1.Mock
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockAuthLocalDataSource extends _i1.Mock
-    implements _i5.AuthLocalDataSource {
+    implements _i6.AuthLocalDataSource {
   MockAuthLocalDataSource() {
     _i1.throwOnMissingStub(this);
   }

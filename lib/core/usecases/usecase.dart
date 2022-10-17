@@ -1,3 +1,4 @@
+import 'package:authentication/features/authentication/data/data_sources/login/login.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import '../errors/failures.dart';
@@ -14,7 +15,9 @@ class NoParams extends Equatable {
 class LoginParams extends Equatable {
   final String email;
   final String password;
+  final LoginMethod loginMethod;
   LoginParams({
+    required this.loginMethod,
     required this.email,
     required this.password,
   });

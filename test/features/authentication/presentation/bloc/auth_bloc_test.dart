@@ -1,6 +1,3 @@
-
-import 'dart:math';
-
 import 'package:authentication/core/errors/failures.dart';
 import 'package:authentication/features/authentication/domain/entities/app_user.dart';
 import 'package:authentication/features/authentication/domain/use_cases/get_user_usecase.dart';
@@ -15,17 +12,16 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-
 import 'auth_bloc_test.mocks.dart';
 
 @GenerateMocks([GetUserUseCase, IsAuthenticatedUseCase, LoginUseCase, LogOutUseCase])
 
 void main(){
   late AuthBloc authBloc;
-  late MockGetUser getUser;
-  late MockIsAuthenticated isAuthenticated;
-  late MockLogin login;
-  late MockLogOut logOut;
+  late MockGetUserUseCase getUser;
+  late MockIsAuthenticatedUseCase isAuthenticated;
+  late MockLoginUseCase login;
+  late MockLogOutUseCase logOut;
 
 
 
@@ -34,10 +30,10 @@ void main(){
   };
 
   void setUpBloc() {
-    getUser = MockGetUser();
-    isAuthenticated = MockIsAuthenticated();
-    logOut = MockLogOut();
-    login = MockLogin();
+    getUser = MockGetUserUseCase();
+    isAuthenticated = MockIsAuthenticatedUseCase();
+    logOut = MockLogOutUseCase();
+    login = MockLoginUseCase();
     authBloc = AuthBloc(getUserUseCase: getUser, isAuthenticatedUseCase: isAuthenticated, logOutUseCase: logOut, loginUseCase: login);
     authBloc.onUserAuthenticatedCallback = onAuthenticatedCallback;
   };
