@@ -15,6 +15,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final IsAuthenticated isAuthenticated;
   final Login login;
   final LogOut logOut;
+  late final Function onUserAuthenticatedCallback;
 
   AuthBloc({
     required this.getUser,
@@ -25,18 +26,18 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<GetAuthStateEvent>(_getAuthStatus);
     on<ShowPasswordEvent>(_showPassword);
     on<LogInButtonClickEvent>(_login);
-    on<CallOnUserAuthenticatedCallback>(_callOnUserAuthenticatedCallBack);
     on<LogOutEvent>(_logOut);
   }
 
   _getAuthStatus(GetAuthStateEvent event, Emitter<AuthState> emit) async {
     emit(Loading());
+    //
     final result = await isAuthenticated(NoParams());
     result.fold((l) {
       emit(Error(l.message));
     }, (r) {
       if (r)
-        emit(Authenticated());
+        onUserAuthenticatedCallback();
       else
         emit(UnAuthenticated());
     });
@@ -57,13 +58,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         emit(Error(l.message));
       },
       (r) {
-        emit(Authenticated());
+        onUserAuthenticatedCallback();
       },
     );
-  }
-
-  _callOnUserAuthenticatedCallBack(CallOnUserAuthenticatedCallback event, Emitter<AuthState> emit){
-    event.onUserAuthenticated();
   }
 
   _logOut(LogOutEvent event, Emitter<AuthState> emit) async {

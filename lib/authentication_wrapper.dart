@@ -26,16 +26,23 @@ class AuthenticationWrapper extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       body: BlocProvider(
-        create: (ctx) => sl<AuthBloc>(),
+        create: (ctx) {
+          final authBloc = sl<AuthBloc>();
+          authBloc.onUserAuthenticatedCallback = onUserAuthenticatedCallBack;
+          return authBloc;
+        },
         child: BlocBuilder<AuthBloc, AuthState>(
+          buildWhen: (previous, current){
+            if(previous != current){
+              return true;
+            }
+            return false;
+          },
           builder: (context, state) {
-            print('state is $state');
+            print('$state');
             if (state is Empty) {
               BlocProvider.of<AuthBloc>(context).add(GetAuthStateEvent());
               return SplashScreen();
-            } else if (state is Authenticated) {
-              BlocProvider.of<AuthBloc>(context).add(CallOnUserAuthenticatedCallback(onUserAuthenticatedCallBack));
-              return _loadingScreen;
             } else if (state is Loading) {
               return _loadingScreen;
             }
@@ -46,7 +53,7 @@ class AuthenticationWrapper extends StatelessWidget {
     );
   }
 
-  Widget _loadingScreen = Container(
+  final Widget _loadingScreen = Container(
     child: Center(
       child: CircularProgressIndicator(),
     ),

@@ -26,12 +26,20 @@ void main(){
   late MockIsAuthenticated isAuthenticated;
   late MockLogin login;
   late MockLogOut logOut;
+
+
+
+  final Function onAuthenticatedCallback = () {
+    print("hello");
+  };
+
   void setUpBloc() {
     getUser = MockGetUser();
     isAuthenticated = MockIsAuthenticated();
     logOut = MockLogOut();
     login = MockLogin();
     authBloc = AuthBloc(getUser: getUser, isAuthenticated: isAuthenticated, logOut: logOut, login: login);
+    authBloc.onUserAuthenticatedCallback = onAuthenticatedCallback;
   };
 
    group('getAuthStatus', () {
@@ -43,15 +51,15 @@ void main(){
        when(isAuthenticated(any)).thenAnswer((_) async => Left(AuthFailure(somethingWrong)));
      }
      blocTest(
-       'emit [Loading, Authenticated] when getAuthStatus occurs and user is logged in',
+       'emit [Loading] when getAuthStatus occurs and user is logged in',
        setUp: () {
          setUpBloc();
          mockLoggedIn(true);
          return authBloc;
        },
        act: (bloc) => bloc.add(GetAuthStateEvent()),
-       expect: () => [Loading(), Authenticated()],
-       verify: (verify) => isAuthenticated,
+       expect: () => [Loading()],
+       verify: (verify) => [isAuthenticated, onAuthenticatedCallback],
        build: () => authBloc,
      );
 
@@ -125,15 +133,15 @@ void main(){
     }
 
     blocTest(
-      'emit [Loading, Authenticated] when login is successful',
+      'emit [Loading] when login is successful',
       setUp: () {
         setUpBloc();
         mockLoggedIn(true);
         return authBloc;
       },
       act: (bloc) => bloc.add(LogInButtonClickEvent(email: tEmail, password: tPassword)),
-      expect: () => [Loading(), Authenticated()],
-      verify: (verify) => login,
+      expect: () => [Loading(), ],
+      verify: (verify) => [login, onAuthenticatedCallback],
       build: () => authBloc,
     );
 
