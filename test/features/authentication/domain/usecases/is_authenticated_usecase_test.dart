@@ -7,12 +7,12 @@ import 'package:mockito/mockito.dart';
 import 'login_usecase.mocks.dart';
 
 void main(){
-  late IsAuthenticated isAuthenticatedUseCase;
+  late IsAuthenticatedUseCase isAuthenticatedUseCase;
   late MockAuthRepository authRepository;
 
   setUp((){
     authRepository = MockAuthRepository();
-    isAuthenticatedUseCase= IsAuthenticated(authRepository);
+    isAuthenticatedUseCase= IsAuthenticatedUseCase(authRepository);
   });
 
 

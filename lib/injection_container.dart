@@ -15,15 +15,15 @@ final sl = GetIt.instance;
 Future<void> init() async {
   /// Features - Authentication
   sl.registerFactory(() => AuthBloc(
-        getUser: sl(),
-        isAuthenticated: sl(),
-        logOut: sl(),
-        login: sl(),
+        getUserUseCase: sl(),
+        isAuthenticatedUseCase: sl(),
+        logOutUseCase: sl(),
+        loginUseCase: sl(),
       ));
-  sl.registerLazySingleton(() => GetUser(sl()));
-  sl.registerLazySingleton(() => IsAuthenticated(sl()));
-  sl.registerLazySingleton(() => LogOut(sl()));
-  sl.registerLazySingleton(() => Login(sl()));
+  sl.registerLazySingleton(() => GetUserUseCase(sl()));
+  sl.registerLazySingleton(() => IsAuthenticatedUseCase(sl()));
+  sl.registerLazySingleton(() => LogOutUseCase(sl()));
+  sl.registerLazySingleton(() => LoginUseCase(sl()));
 
   // Repositories
   sl.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(

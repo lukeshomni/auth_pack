@@ -1,6 +1,3 @@
-import 'dart:math';
-
-import 'package:authentication/core/errors/failures.dart';
 import 'package:authentication/core/usecases/usecase.dart';
 import 'package:authentication/features/authentication/domain/use_cases/get_user_usecase.dart';
 import 'package:authentication/features/authentication/domain/use_cases/is_authenticated_usecase.dart';
@@ -11,17 +8,17 @@ import 'package:authentication/features/authentication/presentation/bloc/auth_st
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  final GetUser getUser;
-  final IsAuthenticated isAuthenticated;
-  final Login login;
-  final LogOut logOut;
+  final GetUserUseCase getUserUseCase;
+  final IsAuthenticatedUseCase isAuthenticatedUseCase;
+  final LoginUseCase loginUseCase;
+  final LogOutUseCase logOutUseCase;
   late final Function onUserAuthenticatedCallback;
 
   AuthBloc({
-    required this.getUser,
-    required this.isAuthenticated,
-    required this.logOut,
-    required this.login,
+    required this.getUserUseCase,
+    required this.isAuthenticatedUseCase,
+    required this.logOutUseCase,
+    required this.loginUseCase,
   }) : super(Empty()) {
     on<GetAuthStateEvent>(_getAuthStatus);
     on<ShowPasswordEvent>(_showPassword);
@@ -32,7 +29,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   _getAuthStatus(GetAuthStateEvent event, Emitter<AuthState> emit) async {
     emit(Loading());
     //
-    final result = await isAuthenticated(NoParams());
+    final result = await isAuthenticatedUseCase(NoParams());
     result.fold((l) {
       emit(Error(l.message));
     }, (r) {
@@ -51,7 +48,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     emit(Loading());
 
     final result =
-        await login(LoginParams(email: event.email, password: event.password));
+        await loginUseCase(LoginParams(email: event.email, password: event.password));
 
     result.fold(
       (l) {
@@ -64,7 +61,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   _logOut(LogOutEvent event, Emitter<AuthState> emit) async {
-    await logOut(NoParams());
+    await logOutUseCase(NoParams());
     event.onLoggedOutCallBack();
   }
 }

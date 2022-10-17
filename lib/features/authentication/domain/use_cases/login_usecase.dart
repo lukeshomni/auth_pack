@@ -7,9 +7,9 @@ import 'package:equatable/equatable.dart';
 
 import '../../../../core/usecases/usecase.dart';
 
-class Login extends UseCase {
+class LoginUseCase extends UseCase {
   final AuthRepository authRepository;
-  Login(this.authRepository);
+  LoginUseCase(this.authRepository);
   @override
   Future<Either<Failure, AppUser>> call(params) {
     return authRepository.logIn(email: params.email, password: params.password);

@@ -9,12 +9,12 @@ import 'package:mockito/mockito.dart';
 import 'login_usecase.mocks.dart';
 
 void main(){
-  late LogOut logOutUsecase;
+  late LogOutUseCase logOutUsecase;
   late MockAuthRepository authRepository;
 
   setUp((){
     authRepository = MockAuthRepository();
-    logOutUsecase = LogOut(authRepository);
+    logOutUsecase = LogOutUseCase(authRepository);
   });
 
 

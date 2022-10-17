@@ -3,11 +3,11 @@ import 'package:authentication/core/usecases/usecase.dart';
 import 'package:authentication/features/authentication/domain/repositories/auth_repository.dart';
 import 'package:dartz/dartz.dart';
 
-class IsAuthenticated extends UseCase{
+class IsAuthenticatedUseCase extends UseCase{
 
   final AuthRepository authRepository;
 
-  IsAuthenticated(this.authRepository);
+  IsAuthenticatedUseCase(this.authRepository);
 
   @override
   Future<Either<Failure, bool>> call(params) {

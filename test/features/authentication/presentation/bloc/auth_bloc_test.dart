@@ -18,7 +18,7 @@ import 'package:mockito/mockito.dart';
 
 import 'auth_bloc_test.mocks.dart';
 
-@GenerateMocks([GetUser, IsAuthenticated, Login, LogOut])
+@GenerateMocks([GetUserUseCase, IsAuthenticatedUseCase, LoginUseCase, LogOutUseCase])
 
 void main(){
   late AuthBloc authBloc;
@@ -38,7 +38,7 @@ void main(){
     isAuthenticated = MockIsAuthenticated();
     logOut = MockLogOut();
     login = MockLogin();
-    authBloc = AuthBloc(getUser: getUser, isAuthenticated: isAuthenticated, logOut: logOut, login: login);
+    authBloc = AuthBloc(getUserUseCase: getUser, isAuthenticatedUseCase: isAuthenticated, logOutUseCase: logOut, loginUseCase: login);
     authBloc.onUserAuthenticatedCallback = onAuthenticatedCallback;
   };
 

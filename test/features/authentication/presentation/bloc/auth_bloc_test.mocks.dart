@@ -56,7 +56,7 @@ class _FakeEither_1<L, R> extends _i1.SmartFake implements _i3.Either<L, R> {
 /// A class which mocks [GetUser].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockGetUser extends _i1.Mock implements _i4.GetUser {
+class MockGetUser extends _i1.Mock implements _i4.GetUserUseCase {
   MockGetUser() {
     _i1.throwOnMissingStub(this);
   }
@@ -90,7 +90,7 @@ class MockGetUser extends _i1.Mock implements _i4.GetUser {
 /// A class which mocks [IsAuthenticated].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockIsAuthenticated extends _i1.Mock implements _i7.IsAuthenticated {
+class MockIsAuthenticated extends _i1.Mock implements _i7.IsAuthenticatedUseCase {
   MockIsAuthenticated() {
     _i1.throwOnMissingStub(this);
   }
@@ -124,7 +124,7 @@ class MockIsAuthenticated extends _i1.Mock implements _i7.IsAuthenticated {
 /// A class which mocks [Login].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockLogin extends _i1.Mock implements _i8.Login {
+class MockLogin extends _i1.Mock implements _i8.LoginUseCase {
   MockLogin() {
     _i1.throwOnMissingStub(this);
   }
@@ -158,7 +158,7 @@ class MockLogin extends _i1.Mock implements _i8.Login {
 /// A class which mocks [LogOut].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockLogOut extends _i1.Mock implements _i10.LogOut {
+class MockLogOut extends _i1.Mock implements _i10.LogOutUseCase {
   MockLogOut() {
     _i1.throwOnMissingStub(this);
   }

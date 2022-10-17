@@ -10,12 +10,12 @@ import 'login_usecase.mocks.dart';
 
 void main(){
 
-  late GetUser getUserUseCase;
+  late GetUserUseCase getUserUseCase;
   late MockAuthRepository authRepository;
 
   setUp((){
     authRepository = MockAuthRepository();
-    getUserUseCase = GetUser(authRepository);
+    getUserUseCase = GetUserUseCase(authRepository);
   });
 
 

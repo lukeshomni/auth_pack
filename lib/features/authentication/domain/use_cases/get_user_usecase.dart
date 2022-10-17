@@ -4,10 +4,10 @@ import 'package:dartz/dartz.dart';
 import '../../../../core/errors/failures.dart';
 import '../repositories/auth_repository.dart';
 
-class GetUser extends UseCase{
+class GetUserUseCase extends UseCase{
   final AuthRepository authRepository;
 
-  GetUser(this.authRepository);
+  GetUserUseCase(this.authRepository);
 
   @override
   Future<Either<Failure, dynamic>> call(params) {
