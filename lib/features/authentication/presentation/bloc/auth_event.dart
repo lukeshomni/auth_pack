@@ -1,4 +1,4 @@
-import 'package:authentication/features/authenticaiton/domain/use_cases/logout_usecase.dart';
+import 'package:authentication/features/authentication/domain/use_cases/logout_usecase.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class AuthEvent extends Equatable{}

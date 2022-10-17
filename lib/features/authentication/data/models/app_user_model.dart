@@ -1,4 +1,4 @@
-import 'package:authentication/features/authenticaiton/domain/entities/app_user.dart';
+import 'package:authentication/features/authentication/domain/entities/app_user.dart';
 
 class AppUserModel extends AppUser{
 

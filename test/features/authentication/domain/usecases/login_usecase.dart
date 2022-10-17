@@ -2,9 +2,9 @@ import 'dart:math';
 
 import 'package:authentication/core/errors/failures.dart';
 import 'package:authentication/core/usecases/usecase.dart';
-import 'package:authentication/features/authenticaiton/domain/entities/app_user.dart';
-import 'package:authentication/features/authenticaiton/domain/repositories/auth_repository.dart';
-import 'package:authentication/features/authenticaiton/domain/use_cases/login_usecase.dart';
+import 'package:authentication/features/authentication/domain/entities/app_user.dart';
+import 'package:authentication/features/authentication/domain/repositories/auth_repository.dart';
+import 'package:authentication/features/authentication/domain/use_cases/login_usecase.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';

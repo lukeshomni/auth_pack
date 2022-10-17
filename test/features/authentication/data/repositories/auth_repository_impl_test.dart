@@ -1,9 +1,9 @@
 import 'package:authentication/core/errors/exceptions.dart';
 import 'package:authentication/core/errors/failures.dart';
-import 'package:authentication/features/authenticaiton/data/data_sources/auth_local_datasource.dart';
-import 'package:authentication/features/authenticaiton/data/data_sources/auth_remote_datasource.dart';
-import 'package:authentication/features/authenticaiton/data/models/app_user_model.dart';
-import 'package:authentication/features/authenticaiton/data/repositories/auth_repository_impl.dart';
+import 'package:authentication/features/authentication/data/data_sources/auth_local_datasource.dart';
+import 'package:authentication/features/authentication/data/data_sources/auth_remote_datasource.dart';
+import 'package:authentication/features/authentication/data/models/app_user_model.dart';
+import 'package:authentication/features/authentication/data/repositories/auth_repository_impl.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';

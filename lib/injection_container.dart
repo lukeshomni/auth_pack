@@ -1,12 +1,12 @@
-import 'package:authentication/features/authenticaiton/data/data_sources/auth_local_datasource.dart';
-import 'package:authentication/features/authenticaiton/data/data_sources/auth_remote_datasource.dart';
-import 'package:authentication/features/authenticaiton/data/repositories/auth_repository_impl.dart';
-import 'package:authentication/features/authenticaiton/domain/repositories/auth_repository.dart';
-import 'package:authentication/features/authenticaiton/domain/use_cases/get_user_usecase.dart';
-import 'package:authentication/features/authenticaiton/domain/use_cases/is_authenticated_usecase.dart';
-import 'package:authentication/features/authenticaiton/domain/use_cases/login_usecase.dart';
-import 'package:authentication/features/authenticaiton/domain/use_cases/logout_usecase.dart';
-import 'package:authentication/features/authenticaiton/presentation/bloc/auth_bloc.dart';
+import 'package:authentication/features/authentication/data/data_sources/auth_local_datasource.dart';
+import 'package:authentication/features/authentication/data/data_sources/auth_remote_datasource.dart';
+import 'package:authentication/features/authentication/data/repositories/auth_repository_impl.dart';
+import 'package:authentication/features/authentication/domain/repositories/auth_repository.dart';
+import 'package:authentication/features/authentication/domain/use_cases/get_user_usecase.dart';
+import 'package:authentication/features/authentication/domain/use_cases/is_authenticated_usecase.dart';
+import 'package:authentication/features/authentication/domain/use_cases/login_usecase.dart';
+import 'package:authentication/features/authentication/domain/use_cases/logout_usecase.dart';
+import 'package:authentication/features/authentication/presentation/bloc/auth_bloc.dart';
 import 'package:get_it/get_it.dart';
 
 final sl = GetIt.instance;

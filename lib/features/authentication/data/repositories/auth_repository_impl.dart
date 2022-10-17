@@ -2,10 +2,10 @@ import 'dart:developer';
 
 import 'package:authentication/core/errors/exceptions.dart';
 import 'package:authentication/core/errors/failures.dart';
-import 'package:authentication/features/authenticaiton/data/data_sources/auth_local_datasource.dart';
-import 'package:authentication/features/authenticaiton/data/data_sources/auth_remote_datasource.dart';
-import 'package:authentication/features/authenticaiton/data/models/app_user_model.dart';
-import 'package:authentication/features/authenticaiton/domain/repositories/auth_repository.dart';
+import 'package:authentication/features/authentication/data/data_sources/auth_local_datasource.dart';
+import 'package:authentication/features/authentication/data/data_sources/auth_remote_datasource.dart';
+import 'package:authentication/features/authentication/data/models/app_user_model.dart';
+import 'package:authentication/features/authentication/domain/repositories/auth_repository.dart';
 import 'package:dartz/dartz.dart';
 
 class AuthRepositoryImpl extends AuthRepository {

@@ -1,7 +1,7 @@
 import 'package:authentication/core/errors/failures.dart';
 import 'package:authentication/core/usecases/usecase.dart';
-import 'package:authentication/features/authenticaiton/domain/entities/app_user.dart';
-import 'package:authentication/features/authenticaiton/domain/use_cases/get_user_usecase.dart';
+import 'package:authentication/features/authentication/domain/entities/app_user.dart';
+import 'package:authentication/features/authentication/domain/use_cases/get_user_usecase.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';

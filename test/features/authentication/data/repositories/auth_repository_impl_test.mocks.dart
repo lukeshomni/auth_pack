@@ -5,11 +5,11 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i4;
 
-import 'package:authentication/features/authenticaiton/data/data_sources/auth_local_datasource.dart'
+import 'package:authentication/features/authentication/data/data_sources/auth_local_datasource.dart'
     as _i5;
-import 'package:authentication/features/authenticaiton/data/data_sources/auth_remote_datasource.dart'
+import 'package:authentication/features/authentication/data/data_sources/auth_remote_datasource.dart'
     as _i3;
-import 'package:authentication/features/authenticaiton/data/models/app_user_model.dart'
+import 'package:authentication/features/authentication/data/models/app_user_model.dart'
     as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 

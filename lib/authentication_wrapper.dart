@@ -1,9 +1,9 @@
 
-import 'package:authentication/features/authenticaiton/presentation/bloc/auth_bloc.dart';
-import 'package:authentication/features/authenticaiton/presentation/bloc/auth_event.dart';
-import 'package:authentication/features/authenticaiton/presentation/bloc/auth_state.dart';
-import 'package:authentication/features/authenticaiton/presentation/screens/login_screen.dart';
-import 'package:authentication/features/authenticaiton/presentation/screens/splash_screen.dart';
+import 'package:authentication/features/authentication/presentation/bloc/auth_bloc.dart';
+import 'package:authentication/features/authentication/presentation/bloc/auth_event.dart';
+import 'package:authentication/features/authentication/presentation/bloc/auth_state.dart';
+import 'package:authentication/features/authentication/presentation/screens/login_screen.dart';
+import 'package:authentication/features/authentication/presentation/screens/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

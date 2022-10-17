@@ -1,6 +1,6 @@
 import 'package:authentication/core/errors/failures.dart';
-import 'package:authentication/features/authenticaiton/domain/entities/app_user.dart';
-import 'package:authentication/features/authenticaiton/domain/repositories/auth_repository.dart';
+import 'package:authentication/features/authentication/domain/entities/app_user.dart';
+import 'package:authentication/features/authentication/domain/repositories/auth_repository.dart';
 
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';

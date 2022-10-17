@@ -6,17 +6,17 @@
 import 'dart:async' as _i5;
 
 import 'package:authentication/core/errors/failures.dart' as _i6;
-import 'package:authentication/features/authenticaiton/domain/entities/app_user.dart'
+import 'package:authentication/features/authentication/domain/entities/app_user.dart'
     as _i9;
-import 'package:authentication/features/authenticaiton/domain/repositories/auth_repository.dart'
+import 'package:authentication/features/authentication/domain/repositories/auth_repository.dart'
     as _i2;
-import 'package:authentication/features/authenticaiton/domain/use_cases/get_user_usecase.dart'
+import 'package:authentication/features/authentication/domain/use_cases/get_user_usecase.dart'
     as _i4;
-import 'package:authentication/features/authenticaiton/domain/use_cases/is_authenticated_usecase.dart'
+import 'package:authentication/features/authentication/domain/use_cases/is_authenticated_usecase.dart'
     as _i7;
-import 'package:authentication/features/authenticaiton/domain/use_cases/login_usecase.dart'
+import 'package:authentication/features/authentication/domain/use_cases/login_usecase.dart'
     as _i8;
-import 'package:authentication/features/authenticaiton/domain/use_cases/logout_usecase.dart'
+import 'package:authentication/features/authentication/domain/use_cases/logout_usecase.dart'
     as _i10;
 import 'package:dartz/dartz.dart' as _i3;
 import 'package:mockito/mockito.dart' as _i1;

@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:authentication/core/errors/exceptions.dart';
-import 'package:authentication/features/authenticaiton/data/models/app_user_model.dart';
+import 'package:authentication/features/authentication/data/models/app_user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 //implement factory patterns
