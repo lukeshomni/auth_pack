@@ -13,6 +13,14 @@ class LoginFailure extends Failure{
   List<Object?> get props => [message];
 }
 
+class SignUpFailure extends Failure{
+  final String message;
+  SignUpFailure(this.message) : super(message);
+
+  @override
+  List<Object?> get props => [message];
+}
+
 class LogOutFailure extends Failure{
   final String message;
   LogOutFailure(this.message) : super(message);
@@ -29,6 +37,8 @@ class AuthFailure extends Failure{
   List<Object?> get props => [message];
 }
 
-const String userNotFound = 'User not found';
+const String userNotFound = 'User not found. Please sign up';
 const String somethingWrong = ' Something went wrong please try again';
 const String invalidCredentials = 'Please enter valid email and password';
+const String weakPassword = 'The password provided is too weak.';
+const String userAlreadyExists = 'The account already exists for that email. Please Login';

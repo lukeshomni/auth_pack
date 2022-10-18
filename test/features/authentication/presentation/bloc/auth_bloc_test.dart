@@ -4,6 +4,7 @@ import 'package:authentication/features/authentication/domain/use_cases/get_user
 import 'package:authentication/features/authentication/domain/use_cases/is_authenticated_usecase.dart';
 import 'package:authentication/features/authentication/domain/use_cases/login_usecase.dart';
 import 'package:authentication/features/authentication/domain/use_cases/logout_usecase.dart';
+import 'package:authentication/features/authentication/domain/use_cases/sign_up_usecase.dart';
 import 'package:authentication/features/authentication/presentation/bloc/auth_bloc.dart';
 import 'package:authentication/features/authentication/presentation/bloc/auth_event.dart';
 import 'package:authentication/features/authentication/presentation/bloc/auth_state.dart';
@@ -14,13 +15,14 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'auth_bloc_test.mocks.dart';
 
-@GenerateMocks([GetUserUseCase, IsAuthenticatedUseCase, LoginUseCase, LogOutUseCase])
+@GenerateMocks([GetUserUseCase, IsAuthenticatedUseCase, LoginUseCase, LogOutUseCase, SignUpUseCase])
 
 void main(){
   late AuthBloc authBloc;
   late MockGetUserUseCase getUser;
   late MockIsAuthenticatedUseCase isAuthenticated;
   late MockLoginUseCase login;
+  late MockSignUpUseCase signUp;
   late MockLogOutUseCase logOut;
 
 
@@ -34,7 +36,8 @@ void main(){
     isAuthenticated = MockIsAuthenticatedUseCase();
     logOut = MockLogOutUseCase();
     login = MockLoginUseCase();
-    authBloc = AuthBloc(getUserUseCase: getUser, isAuthenticatedUseCase: isAuthenticated, logOutUseCase: logOut, loginUseCase: login);
+    signUp = MockSignUpUseCase();
+    authBloc = AuthBloc(getUserUseCase: getUser, isAuthenticatedUseCase: isAuthenticated, logOutUseCase: logOut, loginUseCase: login, signUpUseCase: signUp);
     authBloc.onUserAuthenticatedCallback = onAuthenticatedCallback;
   };
 
@@ -67,7 +70,7 @@ void main(){
          return authBloc;
        },
        act: (bloc) => bloc.add(GetAuthStateEvent()),
-       expect: () => [Loading(), UnAuthenticated()],
+       expect: () => [Loading(), ShowLoginScreen()],
        verify: (verify) => isAuthenticated,
        build: () => authBloc,
      );
@@ -84,35 +87,7 @@ void main(){
        verify: (verify) => isAuthenticated,
        build: () => authBloc,
      );
-
-
    });
-
-
-  group('showPasswordEvent', () {
-    blocTest(
-      'emit [Loading, showPassword] when show password event occurs with true value',
-      setUp: () {
-        setUpBloc();
-        return authBloc;
-      },
-      act: (bloc) => bloc.add(ShowPasswordEvent(true)),
-      expect: () => [ShowPassword(true)],
-      build: () => authBloc,
-    );
-
-    blocTest(
-      'emit [Loading, showPassword] when show password event occurs with false value',
-      setUp: () {
-        setUpBloc();
-        return authBloc;
-      },
-      act: (bloc) => bloc.add(ShowPasswordEvent(false)),
-      expect: () => [ShowPassword(false)],
-      build: () => authBloc,
-    );
-
-  });
 
 
   group('login', () {

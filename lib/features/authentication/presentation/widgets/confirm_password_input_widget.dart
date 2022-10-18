@@ -1,6 +1,5 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -8,15 +7,16 @@ import '../../../../core/styles/theme.dart';
 import '../../../../core/utils/assets.dart';
 import '../../../../core/utils/constants.dart';
 
-class PasswordInputWidget extends StatefulWidget {
-  final TextEditingController controller;
-  PasswordInputWidget({required this.controller});
+class ConfirmPasswordInputWidget extends StatefulWidget {
+  final TextEditingController confirmPasswordController;
+  final TextEditingController passwordController;
+  ConfirmPasswordInputWidget({required this.confirmPasswordController, required this.passwordController});
 
   @override
-  State<StatefulWidget> createState() => PasswordInputWidgetState();
+  State<StatefulWidget> createState() => ConfirmPasswordInputWidgetState();
 }
 
-class PasswordInputWidgetState extends State<PasswordInputWidget>{
+class ConfirmPasswordInputWidgetState extends State<ConfirmPasswordInputWidget>{
   bool showPassword = false;
 
   @override
@@ -39,7 +39,7 @@ class PasswordInputWidgetState extends State<PasswordInputWidget>{
 
   Widget _buildPasswordText() {
     return Text(
-      Constants.passwordText,
+      Constants.confirmPasswordText,
       style: GoogleFonts.raleway(
         color: lightGreyTextColor,
         fontWeight: FontWeight.w500,
@@ -56,7 +56,7 @@ class PasswordInputWidgetState extends State<PasswordInputWidget>{
 
   Widget _buildInput() {
     return TextFormField(
-      controller: widget.controller,
+      controller: widget.confirmPasswordController,
       style: GoogleFonts.raleway(
           color: Colors.black,
           fontSize: 17,
@@ -64,20 +64,20 @@ class PasswordInputWidgetState extends State<PasswordInputWidget>{
           letterSpacing: 5),
       decoration: InputDecoration(
           suffix: GestureDetector(
-        onTap: () {
-          setState(() {
-            showPassword = !showPassword;
-          });
-        },
-        child: Text(
-          showPassword ? Constants.hidePassword : Constants.showPassword,
-          style: GoogleFonts.raleway(
-              color: primaryColor,
-              fontWeight: FontWeight.w500,
-              fontSize: 15,
-              letterSpacing: 0),
-        ),
-      )),
+            onTap: () {
+              setState(() {
+                showPassword = !showPassword;
+              });
+            },
+            child: Text(
+              showPassword ? Constants.hidePassword : Constants.showPassword,
+              style: GoogleFonts.raleway(
+                  color: primaryColor,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 15,
+                  letterSpacing: 0),
+            ),
+          )),
       obscuringCharacter: '*',
       obscureText: !showPassword,
       enableSuggestions: false,
@@ -89,6 +89,8 @@ class PasswordInputWidgetState extends State<PasswordInputWidget>{
   String? _passwordValidator(String? text) {
     if (text == null || text.isEmpty || text.length < 6)
       return Constants.enterValidPassword;
+    if(text.compareTo(widget.passwordController.text) != 0)
+      return Constants.passwordDoNotMatch;
     return null;
   }
 }

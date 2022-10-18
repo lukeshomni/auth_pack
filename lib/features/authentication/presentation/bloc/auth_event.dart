@@ -8,22 +8,37 @@ class GetAuthStateEvent extends AuthEvent{
   List<Object?> get props => [];
 }
 
+class ShowLoginScreenEvent extends AuthEvent{
+  @override
+  List<Object?> get props => [];
+}
+
+
+class ShowSignUpScreenEvent extends AuthEvent{
+  @override
+  List<Object?> get props => [];
+}
+
 class LogInButtonClickEvent extends AuthEvent{
   final String email;
   final String password;
   LogInButtonClickEvent({
     required this.email,
     required this.password,
-});
+  });
   @override
   List<Object?> get props => [email, password];
 }
 
-class ShowPasswordEvent extends AuthEvent{
-  final bool showPassword;
-  ShowPasswordEvent(this.showPassword);
+class SignUpButtonClickEvent extends AuthEvent{
+  final String email;
+  final String password;
+  SignUpButtonClickEvent({
+    required this.email,
+    required this.password,
+  });
   @override
-  List<Object?> get props => [showPassword];
+  List<Object?> get props => [email, password];
 }
 
 class CallOnUserAuthenticatedCallback extends AuthEvent{

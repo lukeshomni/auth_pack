@@ -18,6 +18,8 @@ import 'package:authentication/features/authentication/domain/use_cases/login_us
     as _i8;
 import 'package:authentication/features/authentication/domain/use_cases/logout_usecase.dart'
     as _i10;
+import 'package:authentication/features/authentication/domain/use_cases/sign_up_usecase.dart'
+    as _i11;
 import 'package:dartz/dartz.dart' as _i3;
 import 'package:mockito/mockito.dart' as _i1;
 
@@ -188,4 +190,38 @@ class MockLogOutUseCase extends _i1.Mock implements _i10.LogOutUseCase {
           ),
         )),
       ) as _i5.Future<_i3.Either<_i6.Failure, void>>);
+}
+
+/// A class which mocks [SignUpUseCase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockSignUpUseCase extends _i1.Mock implements _i11.SignUpUseCase {
+  MockSignUpUseCase() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i2.AuthRepository get authRepository => (super.noSuchMethod(
+        Invocation.getter(#authRepository),
+        returnValue: _FakeAuthRepository_0(
+          this,
+          Invocation.getter(#authRepository),
+        ),
+      ) as _i2.AuthRepository);
+  @override
+  _i5.Future<_i3.Either<_i6.Failure, dynamic>> call(dynamic params) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [params],
+        ),
+        returnValue: _i5.Future<_i3.Either<_i6.Failure, dynamic>>.value(
+            _FakeEither_1<_i6.Failure, dynamic>(
+          this,
+          Invocation.method(
+            #call,
+            [params],
+          ),
+        )),
+      ) as _i5.Future<_i3.Either<_i6.Failure, dynamic>>);
 }

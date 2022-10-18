@@ -11,7 +11,12 @@ class Loading extends AuthState{
   List<Object?> get props => [];
 }
 
-class UnAuthenticated extends AuthState{
+class ShowLoginScreen extends AuthState{
+  @override
+  List<Object?> get props => [];
+}
+
+class ShowSignUpScreen extends AuthState{
   @override
   List<Object?> get props => [];
 }
@@ -21,12 +26,4 @@ class Error extends AuthState{
   Error(this.errorMessage);
   @override
   List<Object?> get props => [];
-}
-
-class ShowPassword extends AuthState{
-  final bool showPassword;
-  ShowPassword(this.showPassword);
-
-  @override
-  List<Object?> get props => [showPassword];
 }

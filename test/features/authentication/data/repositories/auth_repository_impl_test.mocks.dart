@@ -6,11 +6,13 @@
 import 'dart:async' as _i4;
 
 import 'package:authentication/features/authentication/data/data_sources/auth_local_datasource.dart'
-    as _i6;
+    as _i7;
 import 'package:authentication/features/authentication/data/data_sources/auth_remote_datasource.dart'
     as _i3;
 import 'package:authentication/features/authentication/data/data_sources/login/login.dart'
     as _i5;
+import 'package:authentication/features/authentication/data/data_sources/sign_up/sign_up.dart'
+    as _i6;
 import 'package:authentication/features/authentication/data/models/app_user_model.dart'
     as _i2;
 import 'package:mockito/mockito.dart' as _i1;
@@ -74,13 +76,42 @@ class MockAuthRemoteDataSource extends _i1.Mock
           ),
         )),
       ) as _i4.Future<_i2.AppUserModel>);
+  @override
+  _i4.Future<_i2.AppUserModel> signUp({
+    required _i6.SignUpMethod? signUpMethod,
+    required String? email,
+    required String? password,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #signUp,
+          [],
+          {
+            #signUpMethod: signUpMethod,
+            #email: email,
+            #password: password,
+          },
+        ),
+        returnValue: _i4.Future<_i2.AppUserModel>.value(_FakeAppUserModel_0(
+          this,
+          Invocation.method(
+            #signUp,
+            [],
+            {
+              #signUpMethod: signUpMethod,
+              #email: email,
+              #password: password,
+            },
+          ),
+        )),
+      ) as _i4.Future<_i2.AppUserModel>);
 }
 
 /// A class which mocks [AuthLocalDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockAuthLocalDataSource extends _i1.Mock
-    implements _i6.AuthLocalDataSource {
+    implements _i7.AuthLocalDataSource {
   MockAuthLocalDataSource() {
     _i1.throwOnMissingStub(this);
   }
